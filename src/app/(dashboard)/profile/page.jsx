@@ -10,6 +10,20 @@ import { IoIosLogOut } from "react-icons/io";
 const Profile = () => {
   const router = useRouter();
   const [userData, setUserData] = useState(null);
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [bmi, setBMI] = useState(null); 
+
+  const calculateBMI = () => {
+    const weightInKg = parseFloat(weight);
+    const heightInMeters = parseFloat(height) / 100; // Convert height from cm to meters
+    if (isNaN(weightInKg) || isNaN(heightInMeters) || heightInMeters === 0) {
+      toast.error("Please enter valid weight and height.");
+      return;
+    }
+    const bmiValue = weightInKg / (heightInMeters * heightInMeters);
+    setBMI(bmiValue.toFixed(1));
+  };
 
   const logout = async () => {
     try {
@@ -158,26 +172,39 @@ const Profile = () => {
                     <div>
                       <div className="flex items-center lg:flex-row md:flex-col justify-center font-normal p-6 gap-5">
                         <label htmlFor="" className="text-xl">Weight</label>
-                        <input
-                          type="text"
-                          className="opacity-90 pl-2 py-2 md:px-3 rounded-full font-normal"
+                        <input 
+                          type="number"
+                          className="opacity-90 pl-2 text-black py-2 md:px-3 rounded-full font-normal"
                           placeholder="Enter your weight"
+                          value={weight}
+                          onChange={(e) => setWeight(e.target.value)}
                         />
                       </div>
                       <div className="flex font-normal items-center lg:flex-row md:flex-col justify-center p-6 pt-0 gap-5">
                         <label htmlFor="" className="text-xl">Height</label>
                         <input
                           type="text"
-                          className="opacity-90 pl-2 py-2 md:px-3 rounded-full font-normal"
+                          className="opacity-90 pl-2 py-2 text-black md:px-3 rounded-full font-normal"
                           placeholder="Enter your height"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
                         />
                       </div>
 
                       <div>
-                        <div className="bg-white text-primary p-3 hover:bg-yellow-500 bg:text-black hover:cursor-pointer rounded-full flex justify-center items-center">
+                        <div onClick={calculateBMI} className="bg-white text-primary p-3 hover:bg-yellow-500 bg:text-black hover:cursor-pointer rounded-full flex justify-center items-center">
                           <h3 className="">Calculate</h3>
                         </div>
                       </div>
+
+                      {bmi !== null && (
+                        <div className="mt-4 flex justify-center items-center flex-col">
+                          <h3>Your BMI: {bmi}</h3>
+                          {bmi < 18.5 && <p className="text-red-600">Your are underweight.</p>}
+                          {bmi > 24.5 && <p className="text-red-600">Your are overweight.</p>}
+                          {bmi >= 18.5 && bmi <= 24.5 && <p className="text-green-600">Healthy weight</p>}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
