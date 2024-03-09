@@ -1,52 +1,46 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const LoginPage = () => {
     const router = useRouter();
-    const { data: session, status: sessionStatus } = useSession();
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
-    useEffect(() => {
-        console.log("session status is ", sessionStatus)
-        if (sessionStatus === "authenticated") {
-            console.log("Already Logged In")
-            router.replace("/dashboard");
-        }
-    }, [sessionStatus, router]);
+
+    // useEffect(() => {
+    //     if (user.email.length > 0 && user.password.length > 0) {
+    //         setButtonDisabled(false);
+    //     } else {
+    //         setButtonDisabled(true);
+    //     }
+    // }, [user])
+
 
     const onLoginPage = async () => {
-        console.log("User filled details are ", user.email, " and ", user.password);
         try {
-            const res = await signIn("credentials", {
-                redirect: false,
-                email: user.email,
-                password: user.password,
-            })
-            if (res?.error) {
-                console.log("Invalid email or password")
-                // setError("Invalid email or password");
-                if (res?.url) router.replace("/dashboard");
-            } else {
-                // setError("");
-                console.log("success?")
-            }
-            console.log("Res is ---> ", res)
+            setLoading(true);
+            const response = await axios.post("/api/login", user);
+            console.log("Login success", response.data);
+            toast.success("Login success");
+            setTimeout(() => {
+                router.push("/recipe");
+            }, 2000);
 
         } catch (error) {
-            console.log("<--- Some error occured ---> ", error)
+            console.log("Login failed", error);
+            toast.error(error.response.data.error);
+        } finally {
+            setLoading(false);
         }
-
     };
 
-    if (sessionStatus === "loading") {
-        return <h1>Loading...</h1>;
-    }
 
     return (
         <section className="bg-primary h-screen">
@@ -108,7 +102,7 @@ const LoginPage = () => {
                             </div>
                             <div className="flex items-center justify-between">
                                 {/* Remember me checkbox */}
-                                <div className="flex items-start">
+                                {/* <div className="flex items-start">
                                     <div className="flex items-center h-5">
                                         <input
                                             id="remember"
@@ -132,12 +126,13 @@ const LoginPage = () => {
                                     className="text-base font-medium text-secondary-600 hover:underline dark:text-secondary-500"
                                 >
                                     Forgot password?
-                                </a>
+                                </a> */}
                             </div>
                             <button
                                 onClick={onLoginPage}
                                 type="submit"
-                                className="w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
+                                disabled={loading}
+                                className={` ${loading ? "cursor-progress " : ""} w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800`}
                             >
                                 Login
                             </button>
@@ -155,7 +150,7 @@ const LoginPage = () => {
                 </div>
             </div>
         </section>
-    );
+    )
 };
 
 export default LoginPage;

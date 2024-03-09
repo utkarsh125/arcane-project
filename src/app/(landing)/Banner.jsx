@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Banner = () => {
@@ -15,18 +16,20 @@ const Banner = () => {
             </p>
 
             <div className="flex mt-5 max-lg:items-center justify-center flex-col">
-              <div className="px-5 py-3 hover:cursor-pointer flex justify-center items-center lg:w-[40%] bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-gray-200 rounded-lg">
-                Let's Clock You In!
-              </div>
+              <Link href="/recipe">
+                <div className="px-5 py-3 hover:cursor-pointer flex justify-center items-center lg:w-[40%] bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-gray-200 rounded-lg">
+                  Let's Clock You In!
+                </div>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <img src="./landing/banner-food.png" className="lg:w-[55%] md:w-[50%] w-[70%] object-contain mt-11" alt=""/>
+      <img src="./landing/banner-food.png" className="lg:w-[55%] md:w-[50%] w-[70%] object-contain mt-11" alt="" />
 
       <div>
-        
+
       </div>
     </div>
   );

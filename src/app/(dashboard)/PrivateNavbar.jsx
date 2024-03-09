@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
+import { FaUserAlt } from "react-icons/fa";
 
-const Navbar = () => {
+const PrivateNavbar = () => {
     return (
         <div className='bg-primary text-white h-20 flex justify-between items-center px-20'>
             <div>
@@ -10,12 +11,12 @@ const Navbar = () => {
                 </Link>
             </div>
             <div>
-                <Link href="/recipe">
-                    <button className='font-medium cursor-pointer text-lg text-black bg-white px-5 py-2 rounded-full'>Get Started</button>
+                <Link href="/profile">
+                    <FaUserAlt className='text-3xl' />
                 </Link>
             </div>
         </div>
     )
 }
 
-export default Navbar
+export default PrivateNavbar
