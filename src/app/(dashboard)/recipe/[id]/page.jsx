@@ -23,7 +23,7 @@ const DetailedPage = ({ params }) => {
   };
 
   return (
-    <div className="text-white px-20 mt-6">
+    <div className="text-white md:px-20 px-5 mt-6">
       {/* Navigator */}
       <div className="flex items-center mb-3 gap-2">
         <Link href="/recipe">
@@ -32,12 +32,12 @@ const DetailedPage = ({ params }) => {
         <FaAngleRight className="text-xs" />
         <p className="text-xs font-medium cursor-pointer">{recipeDetailData.title}</p>
       </div>
-      <div className="flex">
-        <div className="w-1/2">
-          <img src={recipeDetailData.img} alt="recipe image" className="w-[90%] h-[30rem] object-cover rounded-xl" />
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2">
+          <img src={recipeDetailData.img} alt="recipe image" className="w-full md:w-[90%] h-[30rem] object-cover rounded-xl" />
         </div>
-        <div className="w-1/2 space-y-6">
-          <h1 className="text-3xl font-poppins font-light">{recipeDetailData.title}</h1>
+        <div className="md:w-1/2 space-y-6">
+          <h1 className="text-3xl font-poppins font-light max-md:mt-3">{recipeDetailData.title}</h1>
           <div className="flex">
             {renderStars()}
           </div>
@@ -71,18 +71,22 @@ const DetailedPage = ({ params }) => {
           </div>
         </div>
       </div>
-      <RecipeMethod />
+      <RecipeMethod method={recipeDetailData.method} />
     </div>
   );
 };
 
-const RecipeMethod = () => {
+const RecipeMethod = ({ method }) => {
   return (
     <div className="mt-12">
       <h1 className="text-3xl font-poppins font-light mb-4">Method</h1>
-      <div className="max-w-xl space-y-1">
-        <h3 className="text-base font-semibold">STEP 1</h3>
-        <p className="leading-relaxed text-gray-200">Heat 2 tbsp of oil in a frying pan over a medium heat. Add the onion and pepper, along with a pinch of salt and fry for 10 mins or until softened. Add the garlic, pesto and ground coriander, and cook for 1 min. Tip in the beans and tomatoes along with ½ can of water, then bring to a simmer and cook uncovered for 10 mins.</p>
+      <div className="max-w-xl space-y-4">
+        {method.map((step, index) => (
+          <div key={index}>
+            <h3 className="text-base font-semibold">STEP {index+1}</h3>
+            <p className="leading-relaxed text-gray-200">{step}</p>
+          </div>
+        ))}
       </div>
     </div>
   )
