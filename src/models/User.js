@@ -25,6 +25,12 @@ const userSchema = new Schema({
   activityLevel: {
     type: String,
   },
+  allergens: {
+    type: String,
+  },
+  bmi: {
+    type: String,
+  },
   isVerified: {
     type: Boolean,
     default: false,

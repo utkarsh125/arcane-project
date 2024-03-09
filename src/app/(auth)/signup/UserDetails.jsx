@@ -7,11 +7,14 @@ import { useRouter } from "next/navigation";
 
 
 
-const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, setStage }) => {
+const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, setStage, selectedAllergens, setSelectedAllergens }) => {
     const router = useRouter();
 
     const handleChange = (e) => {
         setSelectedOption(e.target.value);
+    };
+    const handleChangeAllergens = (e) => {
+        setSelectedAllergens(e.target.value);
     };
 
     const updateUserDetails = async () => {
@@ -31,7 +34,7 @@ const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, set
 
 
     return (
-        <div className="bg-primary w-full h-screen flex relative justify-center pb-14">
+        <div className="bg-primary w-full h-screen flex relative justify-center pb-24">
 
             <div className="flex flex-col items-center justify-center">
                 <div className='flex items-center justify-center'>
@@ -59,12 +62,33 @@ const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, set
                         </select>
                     </div>
                 </div>
+                <div>
+                    <div className='bg-white rounded-xl flex items-center justify-center mt-10'>
+                        <select
+                            value={selectedAllergens}
+                            onChange={handleChangeAllergens}
+                            className="overflow-scroll appearance-none w-[21rem] py-4 text-center border border-white bg-primary text-white rounded-lg text-lg focus:outline-none focus:border-blue-500 cursor-pointer"
+                        >
+                            <option value="">Any food allergens?</option>
+                            <option value="none">none</option>
+                            <option value="Milk">Milk</option>
+                            <option value="Egg">Egg</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Peanuts">Peanuts</option>
+                            <option value="Nuts">Nuts</option>
+                            <option value="Soyabean">Soyabean</option>
+                            <option value="Cheese">Cheese</option>
+                            <option value="Yoghurt">Yoghurt</option>
+                        </select>
+
+                    </div>
+                </div>
             </div>
             {
                 selectedOption && gender && (
 
                     <div div className="absolute bottom-0 right-44 flex items-end justify-end mt-10 pb-14">
-                        <div onClick={()=> setStage("second")} className="flex cursor-pointer bg-white text-2xl px-4 gap-4 py-3 rounded-xl items-center justify-center">
+                        <div onClick={() => setStage("second")} className="flex cursor-pointer bg-white text-2xl px-4 gap-4 py-3 rounded-xl items-center justify-center">
                             <span className="text-black ">Next</span>
                             <FaAngleRight />
                         </div>
