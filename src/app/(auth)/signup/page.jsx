@@ -29,7 +29,7 @@ const SignupPage = () => {
       }, 1000);
 
     } catch (error) {
-      toast.failed("Unable to register user");
+      toast.error("Unable to register user");
       console.log("--->Signup failed", error.message);
     }
     finally {

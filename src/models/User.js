@@ -16,14 +16,12 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Please provide a password"]
   },
-  // gender: {
-  //   type: String,
-  //   required: [true, "Please provide your gender"]
-  // },
-  // age: {
-  //   type: Number,
-  //   required: [true, "Please provide your age"]
-  // },
+  gender: {
+    type: String,
+  },
+  age: {
+    type: String,
+  },
   isVerified: {
     type: Boolean,
     default: false,
