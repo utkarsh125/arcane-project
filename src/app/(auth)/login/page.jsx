@@ -31,7 +31,7 @@ const LoginPage = () => {
             toast.success("Login success");
             setTimeout(() => {
                 router.push("/recipe");
-            }, 2000);
+            }, 1000);
 
         } catch (error) {
             console.log("Login failed", error);

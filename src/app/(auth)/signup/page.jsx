@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+
 
 const SignupPage = () => {
   const router = useRouter();
@@ -15,18 +17,24 @@ const SignupPage = () => {
   const [loading, setLoading] = useState(false);
 
   const onSignup = async () => {
+
     try {
       setLoading(true);
       const response = await axios.post("/api/signup", user);
+      toast.success("User registration successfull!");
       console.log("---> Signup success", response.data);
-      router.push("/login");
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
 
     } catch (error) {
+      toast.failed("Unable to register user");
       console.log("--->Signup failed", error.message);
     }
     finally {
       setLoading(false);
-  }
+    }
   };
 
   return (
@@ -107,7 +115,7 @@ const SignupPage = () => {
               </div>
               <button
                 onClick={onSignup}
-                type="submit"
+                type="button"
                 className="w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
               >
                 Sign Up
