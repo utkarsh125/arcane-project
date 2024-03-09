@@ -1,3 +1,4 @@
+import Footer from '../(landing)/Footer';
 import PrivateNavbar from './PrivateNavbar'
 
 const LandingLayout = ({ children }) => {
@@ -6,6 +7,7 @@ const LandingLayout = ({ children }) => {
         <div className="h-full w-full">
             <PrivateNavbar/>
             {children}
+            <Footer/>
             </div>
       </main>
     );
