@@ -7,7 +7,7 @@ import Footer from "./Footer";
 const landingPage = () => {
   return (
     <div className="">
-      {/* <Navbar /> */}
+      <Navbar />
       <Banner/>
       <Cards/>
       <Footer/>
