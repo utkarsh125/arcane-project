@@ -22,6 +22,9 @@ const userSchema = new Schema({
   age: {
     type: String,
   },
+  activityLevel: {
+    type: String,
+  },
   isVerified: {
     type: Boolean,
     default: false,

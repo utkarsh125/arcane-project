@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import UserDetails from "./UserDetails";
+import UserSecondDisplay from "./UserSecondDisplay";
 
 
 const SignupPage = () => {
@@ -16,13 +17,15 @@ const SignupPage = () => {
     password: "",
     gender: "",
     age: "", 
+    activityLevel: "",
   });
   const [loading, setLoading] = useState(false);
-  const [signup, setSignup] = useState(false);
+  const [stage, setStage] = useState("first");
 
   // Age Gender
   const [gender, setGender] = useState("")
   const [selectedOption, setSelectedOption] = useState("");
+  const [activityLevel, setActivityLevel] = useState("");
 
   
 
@@ -47,6 +50,7 @@ const SignupPage = () => {
         ...user,
         gender: gender, 
         age: selectedOption,
+        activityLevel: activityLevel,
       };
       const response = await axios.post("/api/signup", userData);
       toast.success("User registration successfull!");
@@ -68,12 +72,17 @@ const SignupPage = () => {
   return (
     <>
       {
-        signup === false && (
-          <UserDetails setSignup={setSignup}  gender={gender} setGender={setGender}  selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+        stage === "first" && (
+          <UserDetails setStage={setStage}  gender={gender} setGender={setGender}  selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
         )
       }
       {
-        signup && (
+        stage === "second" && (
+          <UserSecondDisplay setStage={setStage} activityLevel={activityLevel}  setActivityLevel={setActivityLevel}/>
+        )
+      }
+      {
+        stage === "third" && (
           <section className="bg-primary h-screen">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
               <a
@@ -170,7 +179,6 @@ const SignupPage = () => {
               </div>
             </div>
           </section>
-
         )
       }
     </>

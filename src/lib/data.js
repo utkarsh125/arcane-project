@@ -50,6 +50,18 @@ export const recipeData = [
       "Add the cooked tofu back to the pan, toss everything together, and cook for an additional 2-3 minutes.",
       "Season with salt and pepper to taste. Garnish with chopped green onions.",
       "Serve the boiled tofu stir fry over cooked brown rice or your favorite grain."
+    ],
+    ingredient: [
+      "200g firm tofu, boiled and cubed",
+      "2 tablespoons soy sauce",
+      "1 tablespoon sesame oil",
+      "1 tablespoon vegetable oil",
+      "1 bell pepper, sliced",
+      "1 cup broccoli florets",
+      "2 cloves garlic, minced",
+      "1 teaspoon ginger, grated",
+      "Salt and pepper to taste",
+      "Green onions for garnish"
     ]
   },
   {
@@ -105,6 +117,13 @@ export const recipeData = [
       "Pour the oats into a bowl and add your favorite toppings such as fresh fruits, nuts, or seeds.",
       "Enjoy your warm and nutritious bowl of oats with milk!"
     ],
+    ingredient: [
+      "1 cup rolled oats",
+      "1 cup milk",
+      "Honey, maple syrup, or sweetener of choice",
+      "Cinnamon or vanilla extract (optional)",
+      "Fresh fruits, nuts, or seeds for toppings"
+    ]
   },
   {
     id: "chia_seeds",
@@ -148,6 +167,12 @@ export const recipeData = [
       "After the chia seeds have absorbed the liquid and formed a pudding-like consistency, give it a good stir.",
       "Serve the chia seed pudding with your favorite toppings such as fresh berries, sliced fruits, or a sprinkle of nuts."
     ],
+    ingredient: [
+      "1/4 cup chia seeds",
+      "1 cup milk (almond, coconut, or dairy)",
+      "Honey or maple syrup to taste",
+      "Fresh berries, sliced fruits, or nuts for toppings"
+    ]
   },
   {
     id: "soyabean",
@@ -200,6 +225,16 @@ export const recipeData = [
       "Chill the soybean salad in the refrigerator for about 30 minutes before serving.",
       "Garnish with additional cilantro and enjoy this nutritious soybean salad!"
     ],
+    ingredient: [
+      "Soybeans",
+      "Diced tomatoes",
+      "Cucumber",
+      "Red onion",
+      "Fresh cilantro",
+      "Olive oil",
+      "Lemon juice",
+      "Salt and pepper to taste"
+    ]
   },
   {
     id: "brown_rice",
@@ -250,6 +285,17 @@ export const recipeData = [
       "Garnish with green onions and sesame seeds.",
       "Serve this delicious brown rice stir fry hot and enjoy!"
     ],
+    ingredient: [
+      "1 cup brown rice",
+      "Olive oil",
+      "200g firm tofu or preferred protein, diced",
+      "Assorted vegetables (bell peppers, broccoli, carrots, etc.), chopped",
+      "Soy sauce",
+      "1 teaspoon ginger, grated",
+      "2 cloves garlic, minced",
+      "Salt and pepper to taste",
+      "Green onions and sesame seeds for garnish"
+    ]
   },
   {
     id: "lentils_with_salt",
@@ -300,6 +346,21 @@ export const recipeData = [
       "Serve this comforting lentil soup hot, garnished with fresh parsley.",
       "Enjoy a bowl of this wholesome lentil soup!"
     ],
+    ingredient: [
+      "1 cup dried lentils",
+      "Olive oil",
+      "1 onion, diced",
+      "2 carrots, diced",
+      "2 celery stalks, diced",
+      "3 cloves garlic, minced",
+      "1 teaspoon cumin",
+      "1 teaspoon coriander",
+      "4 cups vegetable broth",
+      "1 can diced tomatoes",
+      "Salt and pepper to taste",
+      "Fresh lemon juice",
+      "Fresh parsley for garnish"
+    ]
   },
   {
     id: "black_beans",
@@ -355,6 +416,20 @@ export const recipeData = [
       "Serve these delicious black bean burritos with salsa, guacamole, or your favorite dipping sauce.",
       "Enjoy a satisfying and flavorful black bean burrito!"
     ],
+    ingredient: [
+      "2 cans black beans, drained and rinsed",
+      "1 tablespoon olive oil",
+      "1 onion, diced",
+      "1 bell pepper, diced",
+      "1 teaspoon cumin",
+      "1 teaspoon chili powder",
+      "Salt to taste",
+      "Tortillas",
+      "Shredded cheese",
+      "Diced tomatoes",
+      "Lettuce",
+      "Salsa and guacamole for serving"
+    ]
   },
   {
     id: "barley",
@@ -408,5 +483,21 @@ export const recipeData = [
       "Serve this wholesome barley and vegetable stew hot, garnished with fresh parsley.",
       "Enjoy a comforting bowl of this nutritious stew!"
     ],
+    ingredient: [
+      "1 cup barley",
+      "1 tablespoon olive oil",
+      "1 onion, diced",
+      "2 carrots, diced",
+      "2 celery stalks, diced",
+      "3 cloves garlic, minced",
+      "1 teaspoon dried thyme",
+      "1 teaspoon dried rosemary",
+      "4 cups vegetable broth",
+      "1 can chopped tomatoes",
+      "1 cup green beans, chopped",
+      "1 cup corn kernels",
+      "Salt and pepper to taste",
+      "Fresh parsley for garnish"
+    ]
   },
 ];

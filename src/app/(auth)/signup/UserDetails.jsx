@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 
 
-const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, setSignup }) => {
+const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, setStage }) => {
     const router = useRouter();
 
     const handleChange = (e) => {
@@ -64,7 +64,7 @@ const UserDetails = ({ gender, selectedOption, setGender, setSelectedOption, set
                 selectedOption && gender && (
 
                     <div div className="absolute bottom-0 right-44 flex items-end justify-end mt-10 pb-14">
-                        <div onClick={()=> setSignup(true)} className="flex cursor-pointer bg-white text-2xl px-4 gap-4 py-3 rounded-xl items-center justify-center">
+                        <div onClick={()=> setStage("second")} className="flex cursor-pointer bg-white text-2xl px-4 gap-4 py-3 rounded-xl items-center justify-center">
                             <span className="text-black ">Next</span>
                             <FaAngleRight />
                         </div>

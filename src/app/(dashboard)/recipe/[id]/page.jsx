@@ -71,7 +71,10 @@ const DetailedPage = ({ params }) => {
           </div>
         </div>
       </div>
-      <RecipeMethod method={recipeDetailData.method} />
+      <div className="w-full flex gap-44  ">
+        <RecipeMethod method={recipeDetailData.method} />
+        <RecipeIngredint ingredient={recipeDetailData.ingredient}/>
+      </div>
     </div>
   );
 };
@@ -83,7 +86,23 @@ const RecipeMethod = ({ method }) => {
       <div className="max-w-xl space-y-4">
         {method.map((step, index) => (
           <div key={index}>
-            <h3 className="text-base font-semibold">STEP {index+1}</h3>
+            <h3 className="text-base font-semibold">STEP {index + 1}</h3>
+            <p className="leading-relaxed text-gray-200">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const RecipeIngredint = ({ ingredient }) => {
+  return (
+    <div className="mt-12">
+      <h1 className="text-3xl font-poppins font-light mb-4">Ingredient</h1>
+      <div className="max-w-xl space-y-4">
+        {ingredient.map((step, index) => (
+          <div key={index}>
+            {/* <h3 className="text-base font-semibold">STEP {index + 1}</h3> */}
             <p className="leading-relaxed text-gray-200">{step}</p>
           </div>
         ))}
