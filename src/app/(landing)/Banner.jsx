@@ -18,7 +18,7 @@ const Banner = () => {
             <div className="flex mt-5 max-lg:items-center justify-center flex-col">
               <Link href="/recipe">
                 <div className="px-5 py-3 hover:cursor-pointer flex justify-center items-center lg:w-[45%] bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-gray-200 rounded-lg">
-                  Let's Clock You In!
+                  Let&apos;s Clock You In!
                 </div>
               </Link>
             </div>
