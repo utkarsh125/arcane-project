@@ -31,7 +31,7 @@ const LoginPage = () => {
             toast.success("Login success");
             setTimeout(() => {
                 router.push("/recipe");
-            }, 1000);
+            }, 500);
 
         } catch (error) {
             console.log("Login failed", error);
@@ -134,7 +134,7 @@ const LoginPage = () => {
                                 disabled={loading}
                                 className={` ${loading ? "cursor-progress " : ""} w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800`}
                             >
-                                Login
+                                {loading === true ? "logging..." : "Login"}
                             </button>
                             <p className="text-base font-light text-gray-500 dark:text-gray-400">
                                 Don’t have an account yet?{" "}

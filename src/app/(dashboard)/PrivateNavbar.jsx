@@ -10,6 +10,9 @@ const PrivateNavbar = () => {
                     <h1 className='font-semibold text-2xl cursor-pointer'>LOGO</h1>
                 </Link>
             </div>
+            {/* <div className='text-lg font-medium'>
+                <p className=''>Home</p>
+            </div> */}
             <div>
                 <Link href="/profile">
                     <FaUserAlt className='text-3xl' />

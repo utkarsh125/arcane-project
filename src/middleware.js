@@ -5,8 +5,7 @@ import { NextResponse } from 'next/server'
 export function middleware(request) {
   const path = request.nextUrl.pathname
 
-  const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail' || path === '/' || path === '/user-details'
-
+  const isPublicPath = path === '/login' || path === '/signup' || path === '/'
   const token = request.cookies.get('token')?.value || ''
 
   if(isPublicPath && token) {
@@ -14,7 +13,7 @@ export function middleware(request) {
   }
 
   if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL('/login', request.nextUrl))
+    return NextResponse.redirect(new URL('/signup', request.nextUrl))
   }
     
 }
@@ -26,7 +25,6 @@ export const config = {
     '/profile',
     '/login',
     '/signup',
-    '/verifyemail',
     '/recipe'
   ]
 }

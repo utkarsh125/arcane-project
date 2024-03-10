@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import UserDetails from "./UserDetails";
+import UserSecondDisplay from "./UserSecondDisplay";
 
 
 const SignupPage = () => {
@@ -15,16 +16,18 @@ const SignupPage = () => {
     email: "",
     password: "",
     gender: "",
-    age: "", 
+    age: "",
+    activityLevel: "",
+    allergens: "",
   });
   const [loading, setLoading] = useState(false);
-  const [signup, setSignup] = useState(false);
+  const [stage, setStage] = useState("first");
 
   // Age Gender
   const [gender, setGender] = useState("")
   const [selectedOption, setSelectedOption] = useState("");
-
-  
+  const [activityLevel, setActivityLevel] = useState("");
+  const [selectedAllergens, setSelectedAllergens] = useState("");
 
   const updateUserDetails = async () => {
     try {
@@ -45,8 +48,10 @@ const SignupPage = () => {
       setLoading(true);
       const userData = {
         ...user,
-        gender: gender, 
+        gender: gender,
         age: selectedOption,
+        activityLevel: activityLevel,
+        allergens: selectedAllergens,
       };
       const response = await axios.post("/api/signup", userData);
       toast.success("User registration successfull!");
@@ -68,12 +73,17 @@ const SignupPage = () => {
   return (
     <>
       {
-        signup === false && (
-          <UserDetails setSignup={setSignup}  gender={gender} setGender={setGender}  selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+        stage === "first" && (
+          <UserDetails setStage={setStage} gender={gender} setGender={setGender} selectedAllergens={selectedAllergens} setSelectedAllergens={setSelectedAllergens} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
         )
       }
       {
-        signup && (
+        stage === "second" && (
+          <UserSecondDisplay setStage={setStage} activityLevel={activityLevel} setActivityLevel={setActivityLevel} />
+        )
+      }
+      {
+        stage === "third" && (
           <section className="bg-primary h-screen">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
               <a
@@ -154,7 +164,7 @@ const SignupPage = () => {
                       type="button"
                       className="w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-base px-5 py-3 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
                     >
-                      Sign Up
+                      {loading === true ? "signing..." : "Sign Up"}
                     </button>
                     <p className="text-base font-light text-gray-500 dark:text-gray-400">
                       Already a user?{" "}
@@ -170,7 +180,6 @@ const SignupPage = () => {
               </div>
             </div>
           </section>
-
         )
       }
     </>

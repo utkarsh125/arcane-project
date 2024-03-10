@@ -13,6 +13,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-lite"></script>
       <body className={inter.className}>
         <div className="">
           {/* <Navbar/> */}

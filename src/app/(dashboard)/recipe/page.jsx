@@ -1,77 +1,102 @@
-import React from "react";
+"use client";
+
+import Link from "next/link";
 import { LiaStarSolid } from "react-icons/lia";
+import axios from "axios";
+import { recipeData } from '../../../lib/data'
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 
-const recipePage = () => {
-  const data = [
-    {
-      img: "./cardsub/tofu.jpg",
-      title: "Tofu Raw Boiled",
-      des: "Tofu is a soy-based protein made by coagulating soy milk.",
-      price: "1000"
-    },
-    {
-      img: "./cardsub/oatmeal.jpg",
-      title: "Oats with Milk",
-      des: "Oats are whole grains consumed as oatmeal or rolled oats.",
-      price: "1000"
-    },
-    {
-      img: "./cardsub/chia.jpg",
-      title: "Chia Seeds",
-      des: "Chia seeds are small, nutrient-dense seeds that are protein-rich.",
-      price: "1000"
-    },
-    {
-      img: "./cardsub/soyabean.png",
-      title: "Soyabean",
-      des: "Soybeans are legumes that are used as staples for protein.",
-      price: "1000"
-    },
-    {
-      img: "./cardsub/brown.jpg",
-      title: "Brown Rice",
-      des: "Brown rice is a whole grain rice with the outer hull removed.",
-      price: "1000"
-    },
-    {
-      img: "./landing/lentils.jpg",
-      title: "Lentils with Salt",
-      des: " Lentils are legumes that come in various colors.",
-      price: "1000"
+const getRecommendedProducts = (userActivityLevel) => {
+  // Filter products with high protein content
+  const highProteinProducts = recipeData.filter(product => {
+    const protein = product.nutrition.find(item => item.name === 'Protein');
+    return protein && parseFloat(protein.size) >= 10; // Assuming protein size is a string representing grams
+  });
 
-    },
-    {
-      img: "./cardsub/blackbean.jpg",
-      title: "Black Beans",
-      des: " Black beans are a type of legume, rich in protein and antioxidants.",
-      price: "1000"
-    },
-    {
-      img: "./cardsub/barley.jpg",
-      title: "Barley",
-      des: "Barley is a cereal grain that is rich in fiber, vitamins, and minerals. ",
-      price: "1000"
-    },
-  ]
+  // Filter products based on the user's activity level
+  if (userActivityLevel === 'high') {
+    // Apply additional filtering logic for high activity level
+    // Example: Add more conditions or apply specific filters
+    // For now, returning all high protein products
+    return highProteinProducts;
+  } else {
+    // For other activity levels, return only high protein products
+    return highProteinProducts;
+  }
+};
+
+// const getNonAllergicProducts = (userAllergen) => {
+//   return recipeData.filter(product => {
+//     // Check if product description contains the allergen
+//     return !product.des.toLowerCase().includes(userAllergen.toLowerCase());
+//   });
+// };
+
+const RecipePage = () => {
+  // const [userData, setUserData] = useState(null);
+  // const [recommendedProducts, setRecommendedProducts] = useState([]);
+  // const [filteredRecipe, setFilteredRecipe] = useState([]);
+  // console.log("userData ", userData);
+
+  // const getUserDetails = async () => {
+  //   try {
+  //     const res = await axios.get("/api/me");
+  //     console.log("res.data is ", res.data);
+  //     setUserData(res.data.data); // Set user data received from the API response
+
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     toast.error("Failed to fetch user details");
+  //   }
+  // };
+
+  // useEffect(() => { 
+  //   getUserDetails();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (userData) {
+  //     const products = getNonAllergicProducts(userData.allergen);
+  //     console.log('Recommended products:', products);
+  //     setFilteredRecipe(products);
+  //   }
+  // }, [userData]);
+
+
   return (
-    <div className="bg-primary font-poppins h-full pt-10">
+    <div className="bg-primary font-poppins h-full pt-0">
       <h1 className="text-white text-3xl font-bold flex justify-center items-center">Handpicked Collection of Recipes</h1>
-      <div className="flex flex-wrap gap-4 items-center justify-center">
-        {data.map((item, index) => (
-          <div className="hover:scale-105 duration-300 transition ease-in-out cursor-pointer" key={index}>
-            <Card img={item.img} title={item.title} des={item.des} price={item.price}/>
-          </div>
+      <div className="flex flex-wrap  items-center justify-center">
+        {recipeData.map((item, index) => (
+          <Link key={index} href={`/recipe/${item.id}`}>
+            <div className="hover:scale-105 duration-300 transition ease-in-out cursor-pointer">
+              <Card img={item.img} title={item.title} des={item.des} price={item.price} rating={item.rating} />
+            </div>
+          </Link>
         ))}
       </div>
     </div>
   );
 };
 
-const Card = ({img, title, des, price}) => {
+const Card = ({ img, title, des, price, rating }) => {
+  const renderStars = () => {
+    const stars = [];
+    const totalStars = 5;
+    for (let i = 0; i < totalStars; i++) {
+      if (i < rating) {
+        stars.push(<LiaStarSolid className="text-yellow-500" key={i} />);
+      } else {
+        stars.push(<LiaStarSolid key={i} className="text-gray-300" />);
+      }
+    }
+    return stars;
+  };
   return (
     <div className="flex items-center p-10">
-      <div className="flex rounded-lg shadow-md bg-white w-80 h-auto">
+      <div className="flex rounded-md shadow-md bg-white w-80 h-auto">
         <div className="w-full">
           <img
             src={`${img}`}
@@ -81,14 +106,8 @@ const Card = ({img, title, des, price}) => {
           <div className="p-4">
             <h2 className="text-xl font-bold mb-2">{title}</h2>
             <p className="text-gray-700">{des}</p>
-            <div className="flex flex-col">
-              <p className="text-gray-900 font-bold flex justify-right rounded-lg pt-4">₹{price}</p>
-              <div className="flex flex-row">
-                <p><LiaStarSolid /></p>
-                <p><LiaStarSolid /></p>
-                <p><LiaStarSolid /></p>
-                <p><LiaStarSolid /></p>
-              </div>
+            <div className="flex mt-3">
+              {renderStars()}
             </div>
           </div>
         </div>
@@ -97,4 +116,4 @@ const Card = ({img, title, des, price}) => {
   );
 };
 
-export default recipePage;
+export default RecipePage;

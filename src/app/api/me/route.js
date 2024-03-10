@@ -28,7 +28,6 @@ export async function PATCH(request){
         const userId = await getDataFromToken(request);
         const userDataToUpdate = await request.json(); 
 
-
         const updatedUser = await User.findOneAndUpdate({_id: userId}, userDataToUpdate, { new: true });
 
         if (!updatedUser) {
