@@ -3,7 +3,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="bg-primary mx-4 lg:mx-56 xl:mx-72 font-poppins flex lg:flex-row flex-col items-center justify-center ">
+    <div className="bg-primary h-screen mx-4 lg:mx-56 xl:mx-72 font-poppins flex lg:flex-row flex-col items-center justify-center ">
 
       <div className="w-full flex justify-center mt-[75px] ">
         <div className="w-full max-lg:flex items-center justify-center flex-col">
