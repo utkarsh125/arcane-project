@@ -1,3 +1,4 @@
+import Features from '../(landing)/Features';
 import Footer from '../(landing)/Footer';
 import PrivateNavbar from './PrivateNavbar'
 

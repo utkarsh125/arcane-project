@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Cards from "./Cards";
 import Footer from "./Footer";
 import Center from "./Center";
+import Features from "./Features";
 
 const landingPage = () => {
   return (
@@ -12,6 +13,7 @@ const landingPage = () => {
       <Banner/>
       <Cards/>
       <Center />
+      <Features />
       <Footer/>
     </div>
   );
